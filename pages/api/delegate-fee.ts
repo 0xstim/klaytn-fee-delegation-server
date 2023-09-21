@@ -1,0 +1,49 @@
+// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import type { NextApiRequest, NextApiResponse } from 'next'
+import Caver from 'caver-js';
+import { type } from 'os';
+
+// type Data = {
+//   messageHash: string,
+//   v: string,
+//   r: string,
+//   s: string,
+//   rawTransaction: string,
+//   txHash: string,
+//   senderTxHash: string,
+//   signatures: string[][]
+// }
+
+type ResData = {
+  data: {
+    transactionHash: string,
+    status: string
+  }
+}
+
+type DeprecatedAccountKey = /*unresolved*/ any
+type DeprecatedAccount = /*unresolved*/ any
+
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<ResData>
+) {
+  const feePayerAddress: string | object | DeprecatedAccount | DeprecatedAccountKey | undefined = process.env.FEE_PAYER_ADDRESS;
+  const feePayerPrivateKey: string | object | DeprecatedAccount | DeprecatedAccountKey | undefined = process.env.FEE_PAYER_PRIVATE_KEY;
+  const caver = new Caver('https://public-en-baobab.klaytn.net');
+  caver.klay.accounts.wallet.add(feePayerPrivateKey, feePayerAddress);
+  caver.klay.sendTransaction({
+    senderRawTransaction: req.body.rawTransaction,
+    feePayer: feePayerAddress,
+  })
+  .then(function(receipt) {
+    res.status(200).json(
+      { 
+        data: {
+          transactionHash: receipt.transactionHash,
+          status: 'success'
+        }
+      }
+    )
+  })
+}
