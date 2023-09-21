@@ -63,7 +63,7 @@ export default function handler(
     res.status(403).json(
       {
         data: {
-          transactionHash: '',
+          transactionHash: 'none',
           status: 'fail'
         }
       }
