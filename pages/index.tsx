@@ -53,7 +53,7 @@ sendFeeDelegateTx();`
         <p className={p}>Fee delegation is a feature on Klaytn that allows users to delegate the payment of transaction fees to another user. This can be useful for users who do not have enough KLAY to pay the transaction fee themselves, or for users who want to avoid the hassle of paying transaction fees.</p>
         <p className={p}>To use fee delegation, the sender of the transaction creates a fee delegated transaction. This transaction specifies the recipient of the transaction, the amount of KLAY to be transferred, and the address of the fee payer. The sender then signs the transaction with their private key.</p>
         <p className={p}>The fee payer then signs the transaction with their private key. Once both the sender and fee payer have signed the transaction, it can be submitted to the Klaytn network.</p>
-        <p className={p}>When the transaction is submitted, the fee payer's balance is debited by the amount of the transaction fee. The sender's balance is credited with the amount of KLAY that was transferred.</p>
+        <p className={p}>When the transaction is submitted, the fee payer&apos;s balance is debited by the amount of the transaction fee. The sender&apos;s balance is credited with the amount of KLAY that was transferred.</p>
         <p className={p}>Fee delegation can be a useful tool for users who want to save money on transaction fees or who want to avoid the hassle of paying transaction fees. However, it is important to note that the fee payer is responsible for paying the transaction fee, even if the sender does not have enough KLAY to cover the fee.</p>
         <h2 className={h2}>Benefits of Fee delegation on Klaytn</h2>
         <ul className={list}>
